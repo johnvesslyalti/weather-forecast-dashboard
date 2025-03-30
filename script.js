@@ -9,12 +9,13 @@ async function getWeather() {
         const response = await fetch(url);
         const data = await response.json();
 
+        const temp = Math.floor(data.main.temp);
         if(data.cod !== 200) {
             document.getElementById('weather-info').innerHTML = `<p>${data.message}</p>`
         }
         document.getElementById('weather-info').innerHTML = `
         <h2>${data.name}, ${data.sys.country}</h2>
-        <p>Temperature: ${data.main.temp}</p>
+        <p>Temperature: ${temp} °c</p>
         <p>Humidity: ${data.weather[0].description}</p>
         <p>Wind speed: ${data.wind.speed}</p>
         `   
